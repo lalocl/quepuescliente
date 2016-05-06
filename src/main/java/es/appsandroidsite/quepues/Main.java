@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
 
 import modelo.Url;
 
@@ -12,8 +13,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		Client cliente = ClientBuilder.newClient();
-		Url url = cliente.target("").request(MediaT);
-		
+		Url url = cliente.target("http://localhost:8080/tests/api/Url/?ultima_mod=2016-04-20 10:25:47.0").request(MediaType.APPLICATION_JSON_TYPE).get(Url.class);
+		System.out.println(url.getId());
+		System.out.println(url.getSubCategoria());
+		System.out.println(url.getUrl());
 		
 		
 
