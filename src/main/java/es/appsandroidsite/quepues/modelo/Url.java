@@ -1,4 +1,4 @@
-package modelo;
+package es.appsandroidsite.quepues.modelo;
 
 import java.io.Serializable;
 
