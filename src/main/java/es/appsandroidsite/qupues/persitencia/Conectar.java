@@ -1,4 +1,4 @@
-package es.appsandroidsite.persitencia;
+package es.appsandroidsite.qupues.persitencia;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

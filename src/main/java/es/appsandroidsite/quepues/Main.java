@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,15 +42,15 @@ public class Main {
 		
 		
 	//	estableceComunicacion();
-		//recibirInfoUrl();
+		recibirInfoUrl();
 		
-		if(insertarNuevaUrl()){
+	/*	if(insertarNuevaUrl()){
 			System.out.println("Insertada correctamente");
 			
 		}else{
 			System.out.println("No se ha podido insertar");
 		}
-		
+		*/
 }
 
 	private static void estableceComunicacion() {
@@ -134,6 +135,16 @@ public class Main {
 		}
 	
 	private static void recibirInfoUrl() {
+		
+		Peticion p= new Peticion();
+		
+		ArrayList<Url> lista = p.verListaUrls();
+		
+		for(int i=0;i<lista.size();i++){
+			System.out.println(lista.get(i).getUrl());
+		}
+		
+		/*
 	     
 	JsonTransformer json= new JsonTransformerImplJackson();
 	
@@ -169,7 +180,7 @@ public class Main {
 	           System.out.println(e.getMessage());
 	       }
 
-	    
+	    */
 
 	}
 	

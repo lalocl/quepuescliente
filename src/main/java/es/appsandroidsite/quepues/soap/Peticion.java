@@ -9,16 +9,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import org.json.JSONArray;
 import org.json.JSONTokener;
-import org.json.simple.JSONArray;
+
 import org.json.simple.JSONObject;
 
+import com.google.gson.JsonObject;
 
-import es.appsandroidsite.persitencia.Conectar;
 import es.appsandroidsite.quepues.json.JsonTransformer;
 import es.appsandroidsite.quepues.json.JsonTransformerImplJackson;
 import es.appsandroidsite.quepues.modelo.Url;
+import es.appsandroidsite.qupues.persitencia.Conectar;
 
 public class Peticion {
 	
@@ -109,6 +112,7 @@ public class Peticion {
 		Conectar conexion= new Conectar();
 		conexion.on("Url", "GET");
 		urlConnection= conexion.getUrlConnection();
+		ArrayList<Url> lista= new ArrayList<Url> ();
 		
 	      
 	       try{
@@ -117,12 +121,13 @@ public class Peticion {
 	          URLConnection con = (URLConnection) url.openConnection();
 	          con.setDoOutput(true);*/
 	   
-	    	   urlConnection.setDoInput(true);
+	    	 //  urlConnection.setDoInput(true);
 	          //Recibimos los datos
+	    	   System.out.println("Recibir datos");
 	          BufferedReader recv = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 	          //Los mostramos por pantalla
 	          String s=recv.readLine();
-	          String stringJson=s;
+	          String stringJson;
 	          String stringArrayJson=s;
 	          while(s!=null){
 	        	  
@@ -133,24 +138,46 @@ public class Peticion {
 	                 
 	                }
 	          System.out.println("Enviado");
+	          jsonArray= new JSONArray();
 	          
-	          jsonArray=(JSONArray)new JSONTokener(stringArrayJson).nextValue();
+	          jsonArray=(JSONArray) new JSONTokener(stringArrayJson).nextValue();
 	          
-	          for(int i=0;i< jsonArray.size();i++){
-	        	  
-	        	//  jsonParam=jsonArray.
-	       /*   Url nuevaUrl= (Url) json.fromJson(stringJson, Url.class);
+	//          Iterator<JsonObject> iterator = listOfStates.iterator();  
+	          org.json.JSONObject j;
+	      
+	       for(int i=0;i< jsonArray.length();i++){
+	    	   
+	    	   j=jsonArray.getJSONObject(i);
+	        	
+	    	 // public Url(String categoria, String test, String subCategoria, String url) {
+	    	//   nuevaUrl= (Url) json.fromJson(stringJson, Url.class);
+	        	stringJson=j.toString();
+	        	nuevaUrl= (Url) json.fromJson(stringJson, Url.class);
+	         
+	          
+	          
 	          System.out.println(nuevaUrl.getCategoria());
 	          System.out.println(nuevaUrl.getSubCategoria());
-	          System.out.println(nuevaUrl.getUrl());*/
-	          }
+	          System.out.println(nuevaUrl.getUrl());
+	          lista.add(nuevaUrl);
+	       }
 	          
 	      	
-	          
-	       }catch (Exception e){
-	           System.out.println(e.getMessage());
-	       }
-		return jsonArray;
+	       } catch (MalformedURLException e) {  
+
+	           e.printStackTrace();  
+
+	       }catch (IOException e) {  
+
+	               e.printStackTrace();  
+	               } catch (Exception e) {
+	               // TODO Auto-generated catch block
+	               e.printStackTrace();
+	           }finally{  
+	               if(urlConnection!=null)  
+	               conexion.off();  
+	           }  
+		return lista;
 
 	}
 	
