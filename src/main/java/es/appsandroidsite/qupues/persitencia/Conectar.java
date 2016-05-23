@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class Conectar {
 	
-	final String HTTP="http://localhost:8080/tests/api/";
+	final String HTTP="http://172.18.198.60:8080/tests/api/";
 	private HttpURLConnection urlConnection;
 	
 

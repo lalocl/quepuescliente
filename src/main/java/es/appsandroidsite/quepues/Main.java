@@ -24,7 +24,7 @@ import org.json.simple.JSONObject;
 import java.lang.Object;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.google.gson.Gson;
+
 
 import es.appsandroidsite.quepues.json.JsonTransformer;
 import es.appsandroidsite.quepues.json.JsonTransformerImplJackson;
@@ -35,24 +35,24 @@ import es.appsandroidsite.quepues.soap.Peticion;
 
 public class Main {
 	public static Scanner teclado = new Scanner(System.in);
-	private Gson gson = new Gson();
+//	private Gson gson = new Gson();
 	// TODO Auto-generated method stub
 
 	public static void main(String[] args) {
 		
 		
 	//	estableceComunicacion();
-		recibirInfoUrl();
+	//	recibirInfoUrl();
 		
-	/*	if(insertarNuevaUrl()){
+		if(insertarNuevaUrl()){
 			System.out.println("Insertada correctamente");
 			
 		}else{
 			System.out.println("No se ha podido insertar");
 		}
-		*/
+		
 }
-
+/*
 	private static void estableceComunicacion() {
 		
 		String http = "http://localhost:8080/tests/api/Url";  
@@ -182,9 +182,9 @@ public class Main {
 
 	    */
 
-	}
+//	}
 	
-	
+	/*
 	public String obtenerDatos(String stringUrl){
 		
 		
@@ -237,7 +237,7 @@ public class Main {
 		System.out.println(url.getSubCategoria());
 		System.out.println(url.getUrl());*/
 		
-	}
+	//}
 	
 	public static boolean insertarNuevaUrl(){
 		boolean insertado=false;
