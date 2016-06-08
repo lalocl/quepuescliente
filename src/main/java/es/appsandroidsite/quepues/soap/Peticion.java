@@ -23,7 +23,7 @@ import es.appsandroidsite.quepues.json.JsonTransformerImplJackson;
 import es.appsandroidsite.quepues.modelo.Url;
 import es.appsandroidsite.qupues.persitencia.Conectar;
 
-public class Peticion {
+public class Peticion{
 	
 	private JSONObject jsonParam;
 	private JSONArray jsonArray;
@@ -33,12 +33,13 @@ public class Peticion {
 	
 	
 
-	public Url insertaUrl(Url url){
+	public int insertaUrl(Url url){
 		
 		Url nuevaUrl=null;
 		Conectar conexion= new Conectar();
 		conexion.on("Url", "POST");
 		urlConnection= conexion.getUrlConnection();
+		 int HttpResult=-1;
 		try {
 		System.out.println("Crear json..."); 
 		jsonParam = new JSONObject();
@@ -59,7 +60,7 @@ public class Peticion {
         wr.write(jsonParam.toString());
         wr.flush();
         System.out.println("Enviado Json"); 
-        int HttpResult = urlConnection.getResponseCode();
+        HttpResult = urlConnection.getResponseCode();
         System.out.println("Resultado " +HttpResult);
         if(HttpResult ==HttpURLConnection.HTTP_OK){
         //Recibimos los datos
@@ -100,7 +101,7 @@ public class Peticion {
             if(urlConnection!=null)  
             conexion.off();  
         }  
-		return nuevaUrl;
+		return HttpResult;
    
 		
 		

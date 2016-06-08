@@ -15,7 +15,12 @@ public class Url implements Serializable{
     private String url;
     private String ultimaMod;
     
-     public Url() {
+     @Override
+	public String toString() {
+		return  categoria+ "-"+test+"-"+subCategoria+ "-"+ url;
+	}
+
+	public Url() {
    }
 
    public Url(String categoria, String test, String subCategoria, String url) {

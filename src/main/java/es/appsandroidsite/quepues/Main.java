@@ -26,9 +26,11 @@ import java.lang.Object;
 import com.fasterxml.jackson.core.JsonParser;
 
 
+
 import es.appsandroidsite.quepues.json.JsonTransformer;
 import es.appsandroidsite.quepues.json.JsonTransformerImplJackson;
 import es.appsandroidsite.quepues.modelo.Url;
+import es.appsandroidsite.quepues.soap.HacerPeticiones;
 import es.appsandroidsite.quepues.soap.Peticion;
 
 
@@ -253,12 +255,9 @@ public class Main {
 		
 		 // public Url(String categoria, String test, String subCategoria, String url) {
 		Url nuevaUrl= new Url(codCategoria,codTest,subCategoria,url);
-		Peticion p= new Peticion();
-		if(p.insertaUrl(nuevaUrl)!=null){
-			insertado=true;
-		}
-		
-		return insertado;
+		HacerPeticiones h = new HacerPeticiones(nuevaUrl);
+		h.run();
+		return h.isEnviado();
 		
 		
 	}
